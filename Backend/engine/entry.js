@@ -51,76 +51,77 @@ const createEntry = (req, res) => {
     });
 };
 
-const editEntry = (req, res) => {
-  const entryId = req.params.id;
-  const {dateTime,ipAddress, browserAgent} = req.body;
+// const editEntry = (req, res) => {
+//   const entryId = req.params.id;
+//   const {dateTime,ipAddress, browserAgent} = req.body;
 
-  DataEntry.findOne({
-    where: {
-      id: entryId
-    }
-  })
-    .then(entry => {
-      if (!entry) {
-        return res.status(404).send({
-          error: true,
-          message: 'Cannot update a entry that does not exist.',
-          entryId
-        })
-      }
+//   DataEntry.findOne({
+//     where: {
+//       id: entryId
+//     }
+//   })
+//     .then(entry => {
+//       if (!entry) {
+//         return res.status(404).send({
+//           error: true,
+//           message: 'Cannot update a entry that does not exist.',
+//           entryId
+//         })
+//       }
 
-      DataEntry.update({
-        dateTime: dateTime,
-        ipAddress: ipAddress,
-        browserAgent: browserAgent
-      }, {
-        where: {
-          id: entryId
-        }
-      })
-        .then(updated => {
-          if (updated.pop() === 1) {
-            return res.status(201).send({
-              updated: true,
-              entryId
-            });
-          } else {
-            return res.status(400).send({
-              updated: false,
-              entryId
-            })
-          }
-        })
-        .catch(error => {
-          return res.status(500).send(error);
-        }
-        );
-    })
-    .catch(error => {
-      return res.status(500).send(error);
-    })
-};
+//       DataEntry.update({
+//         dateTime: dateTime,
+//         ipAddress: ipAddress,
+//         browserAgent: browserAgent
+//       }, {
+//         where: {
+//           id: entryId
+//         }
+//       })
+//         .then(updated => {
+//           if (updated.pop() === 1) {
+//             return res.status(201).send({
+//               updated: true,
+//               entryId
+//             });
+//           } else {
+//             return res.status(400).send({
+//               updated: false,
+//               entryId
+//             })
+//           }
+//         })
+//         .catch(error => {
+//           return res.status(500).send(error);
+//         }
+//         );
+//     })
+//     .catch(error => {
+//       return res.status(500).send(error);
+//     })
+// };
 
-const deleteEntry = (req, res) => {
-  const entryId = req.params.id;
+// const deleteEntry = (req, res) => {
+//   const entryId = req.params.id;
 
-  DataEntry.destroy({
-    where: {
-      id: entryId
-    }
-  })
-    .then(res => {
-      return res.status(204).send({});
-    })
-    .catch(error => {
-      return res.status(500).send(error);
-    })
-};
+//   DataEntry.destroy({
+//     where: {
+//       id: entryId
+//     }
+//   })
+//     .then(res => {
+//       return res.status(204).send({});
+//     })
+//     .catch(error => {
+//       return res.status(500).send(error);
+//     })
+// };
 
 module.exports = {
   getEntry,
   getEntryById,
-  editEntry,
-  deleteEntry,
   createEntry
+  // editEntry,
+  // deleteEntry,
+ 
 };

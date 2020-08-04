@@ -12,8 +12,16 @@ export default class ButtonComponent extends Component {
 
     buttonClicked(event) {
         this.setState({ value: this.state.value + 1 });
+        this.getUserinfo();
+      
     }
 
+getUserinfo(){
+fetch('http://ip-api.com/json/?fields=61439')
+  .then(response => response.json())
+  .then(data => console.log(data));
+
+}
 
     render() {
         return (
