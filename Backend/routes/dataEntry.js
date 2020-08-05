@@ -36,41 +36,4 @@ router.post('/', function (req, res, next) {
         }));
 });
 
-// router.put('/:id', function (req, res, next) {
-//     const dataId = req.params.id;
-//     const { dateTime,ipAddress, browserAgent} = req.body;
-
-//     DataEntry.update({
-//         dateTime: dateTime,
-//         ipAddress: ipAddress,
-//         browserAgent: browserAgent
-//     }, {
-//         where: {
-//             id: dataId
-//         }
-//     })
-//         .then(dataEntry => res.status(201).json({
-//             dataEntry
-//         }))
-//         .catch(error => res.status(500).json({
-//             error
-//         }));
-// });
-
-// router.delete('/:id', function (req, res, next) {
-//     const data_id = req.params.id;
-
-//     DataEntry.destroy({
-//         where: {
-//             id: data_id
-//         }
-//     })
-//         .then(status => res.status(201).json({
-//             error: false
-//         }))
-//         .catch(err => res.status(500).json({
-//             error: false
-//         }));
-// });
-
 module.exports = router;

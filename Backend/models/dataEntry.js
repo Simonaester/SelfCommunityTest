@@ -4,7 +4,7 @@ module.exports = (sequelize, DataType) => {
   let DataEntry = sequelize.define('DataEntry', {
     // id missing because Sequelize adds it by default
     dateTime: DataType.STRING(30),
-    ipAddress: DataType.INTEGER(11),
+    ipAddress: DataType.STRING(30),
     browserAgent:DataType.STRING(255)
 
   }, {
