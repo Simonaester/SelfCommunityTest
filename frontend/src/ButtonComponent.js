@@ -16,7 +16,8 @@ export default class ButtonComponent extends Component {
         this.getIpAddress();
         this.getDateTime();
         this.getUserAgent();
-        
+        this.makePostRequest();
+
     }
 
     getDateTime() {
@@ -39,6 +40,7 @@ export default class ButtonComponent extends Component {
 
     }
 
+
     getUserAgent() {
         var getUa = "User-agent header sent: " + navigator.userAgent;
         var storeUa = getUa;
@@ -46,15 +48,29 @@ export default class ButtonComponent extends Component {
     }
 
 
+//Post method to save UserInfo into db
+    // axios = require('axios');
+    // params=[];
+  
+    // async makePostRequest() {
+    //     this.params = {
+    //         dateTime: '2020-8-5 14:22:1',
+    //         browserAgent:'User-agent header sent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0',
+    //         ipAddress: '151.37.192.56'
+    //     }
+    //     let res = await axios.post('http://localhost:9000/info', this.params);
+    //     console.log(res.data);
+    // }
+
 
 
 
     //prova connessione al db
-    async getDataAxios() {
-        const response =
-            await axios.get("http://localhost:9000/info")
-        console.log(response.data)
-    }
+    // async getDataAxios() {
+    //     const response =
+    //         await axios.get("http://localhost:9000/info")
+    //     console.log(response.data)
+    // }
 
 
     render() {
