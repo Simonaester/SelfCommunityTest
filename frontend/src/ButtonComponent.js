@@ -6,34 +6,17 @@ import axios from 'axios';
 
 export default class ButtonComponent extends Component {
 
-    api_url = 'https://api.bigdatacloud.net/data/client-info';
-
-
     constructor(props) {
-
         super(props)
         this.state = { value: 0 };
         this.buttonClicked = this.buttonClicked.bind(this);
     }
-
     buttonClicked(event) {
         this.setState({ value: this.state.value + 1 });
-        this.getUserinfo();
+        this.getIpAddress();
         this.getDateTime();
-         this.getDataAxios();
-
-    }
-
-
-
-
-
-    getUserinfo() {
-
-        fetch(this.api_url)
-            .then(response => response.json())
-            .then(data => console.log(data.ipString,data.userAgentRaw))
-            
+        this.getUserAgent();
+        
     }
 
     getDateTime() {
@@ -41,16 +24,37 @@ export default class ButtonComponent extends Component {
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         var dateTime = date + ' ' + time;
-        var storedata = dateTime;
-        console.log(storedata);
+        var storeDate = dateTime;
+        console.log(storeDate);
     }
+
+    api_url = 'https://api.bigdatacloud.net/data/client-info';
+
+    getIpAddress() {
+        var iP;
+        fetch(this.api_url)
+            .then(res => res.json())
+            .then(data => iP = data.ipString)
+            .then(() => console.log(iP))
+
+    }
+
+    getUserAgent() {
+        var getUa = "User-agent header sent: " + navigator.userAgent;
+        var storeUa = getUa;
+        console.log(storeUa);
+    }
+
+
+
+
 
     //prova connessione al db
     async getDataAxios() {
         const response =
             await axios.get("http://localhost:9000/info")
-         console.log(response.data)
-     }
+        console.log(response.data)
+    }
 
 
     render() {
