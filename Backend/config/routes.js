@@ -5,12 +5,12 @@ module.exports = (app) => {
 
   const dataPath = '/info';
 
+
   /********** DATA REST APIs **********/
   app.get(dataPath, DataEngine.getEntry);
   app.post(dataPath, DataEngine.createEntry);
   app.get(`${dataPath}/:id`, DataEngine.getEntryById);
-  // app.put(`${dataPath}/:id`, DataEngine.editEntry);
-  // app.delete(`${dataPath}/:id`, DataEngine.deleteEntry);
+
 
   /********** ERROR HANDLER **********/
   app.use(ErrorsEngine.page404);

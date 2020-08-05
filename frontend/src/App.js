@@ -9,7 +9,7 @@ function App() {
       <header className="App-header">
         <img src="globe.png" className="App-logo" alt="logo" />
         <p>
-        <ButtonComponent displaytext="Button Component Data"/>
+        <ButtonComponent/>
         </p>
       
       </header>
