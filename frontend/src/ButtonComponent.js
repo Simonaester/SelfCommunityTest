@@ -10,7 +10,7 @@ export default class ButtonComponent extends Component {
     dateTime;
     browserAgent;
     ipAddress;
-    params=[];
+    params = [];
 
 
 
@@ -25,7 +25,7 @@ export default class ButtonComponent extends Component {
         this.getDateTime();
         this.getUserAgent();
         this.postToDb();
-      
+
 
     }
 

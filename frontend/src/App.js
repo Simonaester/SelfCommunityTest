@@ -8,10 +8,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src="globe.png" className="App-logo" alt="logo" />
-        <p>
+        <div>
         <ButtonComponent/>
-        </p>
-      
+        </div>
       </header>
     </div>
   );
