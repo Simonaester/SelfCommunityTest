@@ -5,6 +5,14 @@ import axios from 'axios';
 
 
 export default class ButtonComponent extends Component {
+    api_url = 'http://ip-api.com/json/';
+    axios = require('axios');
+    dateTime;
+    browserAgent;
+    ipAddress;
+    params=[];
+
+
 
     constructor(props) {
         super(props)
@@ -16,61 +24,44 @@ export default class ButtonComponent extends Component {
         this.getIpAddress();
         this.getDateTime();
         this.getUserAgent();
-        this.makePostRequest();
+        this.postToDb();
+      
 
     }
+
+
 
     getDateTime() {
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var dateTime = date + ' ' + time;
-        var storeDate = dateTime;
-        console.log(storeDate);
+        this.dateTime = date + ' ' + time;
+        console.log(this.dateTime);
     }
 
-    api_url = 'https://api.bigdatacloud.net/data/client-info';
-
-    getIpAddress() {
-        var iP;
+    async getIpAddress() {
         fetch(this.api_url)
             .then(res => res.json())
-            .then(data => iP = data.ipString)
-            .then(() => console.log(iP))
-
+            .then(data => this.ipAddress = data.query)
+            .then(() => console.log(this.ipAddress));
     }
 
 
     getUserAgent() {
-        var getUa = "User-agent header sent: " + navigator.userAgent;
-        var storeUa = getUa;
-        console.log(storeUa);
+        this.browserAgent = "User-agent header sent: " + navigator.userAgent;
+        console.log(this.browserAgent);
     }
 
 
-//Post method to save UserInfo into db
-    // axios = require('axios');
-    // params=[];
-  
-    // async makePostRequest() {
-    //     this.params = {
-    //         dateTime: '2020-8-5 14:22:1',
-    //         browserAgent:'User-agent header sent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0',
-    //         ipAddress: '151.37.192.56'
-    //     }
-    //     let res = await axios.post('http://localhost:9000/info', this.params);
-    //     console.log(res.data);
-    // }
-
-
-
-
-    //prova connessione al db
-    // async getDataAxios() {
-    //     const response =
-    //         await axios.get("http://localhost:9000/info")
-    //     console.log(response.data)
-    // }
+    async postToDb() {
+        this.params = {
+            dateTime: this.dateTime,
+            browserAgent: this.browserAgent,
+            ipAddress: this.ipAddress
+        }
+        let res = await axios.post('http://localhost:9000/info', this.params);
+        console.log(res.data);
+    }
 
 
     render() {
